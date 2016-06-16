@@ -1,0 +1,24 @@
+{
+  "name": "movie-db",
+  "version": "0.1.0",
+  "description": "Firebase based app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/time2hack/movieDB.git"
+  },
+  "keywords": [
+    "Firebase",
+    "jQuery",
+    "Bootstrap"
+  ],
+  "author": "Pankaj Patel <patel.pankaj@live.in>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/time2hack/movieDB/issues"
+  },
+  "homepage": "https://github.com/time2hack/movieDB#readme"
+}
