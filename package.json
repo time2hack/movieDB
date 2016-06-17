@@ -20,5 +20,14 @@
   "bugs": {
     "url": "https://github.com/time2hack/movieDB/issues"
   },
-  "homepage": "https://github.com/time2hack/movieDB#readme"
+  "homepage": "https://github.com/time2hack/movieDB#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "firebase": "^3.0.5",
+    "jquery": "^3.0.0"
+  },
+  "devDependencies": {
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
 }
