@@ -1,4 +1,11 @@
-var Firebase = require('firebase');
 var $ = require('jquery');
+var Auth = require('./auth')
 
-console.log(Firebase, $)
+var login = function(type){
+  Auth
+    .init()
+    .login(type);
+};
+$(document).ready(function () {
+  login('anonymous');
+})
