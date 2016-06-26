@@ -7,7 +7,7 @@ module.exports = {
       apiKey: "",
       authDomain: "",
       databaseURL: "",
-      storageBucket: "",
+      storageBucket: ""
     };
     Firebase.initializeApp(config);
     
