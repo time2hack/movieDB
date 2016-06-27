@@ -28,6 +28,16 @@ module.exports = {
       .catch(errorHandler);
   },
 
+  logout: function () {
+    this.auth
+      .signOut()
+      .then(function () {
+        return true;
+      })
+      .catch(function (e) {
+        return false;
+      })
+  },
   login: function (type, data) {
     var auth = Firebase.auth();
     var request = null;
@@ -85,7 +95,7 @@ module.exports = {
   },
 
   errorHandler: function (err) {
-    console.log(err);
+    console.error(err);
     return false;
   }
 }

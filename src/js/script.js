@@ -1,27 +1,39 @@
 var $ = require('jquery');
 var Auth = require('./auth')
+
+//Error box indexes
 var errorIndex = 0;
 
+//Login Wrapper
 var login = function(type, data){
   return Auth.login(type, data);
 };
+
+//Redirect to some Page or URL
 var redirect = function(to) {
   window.location = to;
 }
+
+//Redirect to Home
 var redirectToHome = function(user) {
   if(user){
     redirect('index.html');
   }
 }
+
+//Redirect to Login
 var redirectToLogin = function(user) {
-  if(user){
+  if(!user){
     redirect('login.html');
   }
 }
+
+//Error show and hide controller, will be using the ErrorIndex
 var showError = function(errorObject){
 
 }
 
+//Gets the currently open page, can evolve to a router
 var currentPage = function(){
   var page = window.location.pathname.replace('/', '').replace('\.html', '');
   console.log(page)
@@ -29,21 +41,40 @@ var currentPage = function(){
 }
 
 $(document).ready(function () {
+  //Initialize the Firebase App
   Auth.init();
 
-  if( currentPage() == 'index' ){
-    if( Auth.checkLoggedInUser() === null ){
-      redirectToLogin()
+  //Check and Set the user status
+  var user = Auth.checkLoggedInUser();
+  if( user === null ){ //User is not logged in
+    //Open the login page
+    redirectToLogin(user)
+  } else { //User is logged in
+    //Check if page is login page
+    if( currentPage() === 'login' ){//User is on login page
+      //Redirect to the Home page
+      redirectToHome(user);
+    } else { //User is not on login page
+      //Show and Hide the appropriate button in the Header
+      $('.logout-link').show();
+      $('.login-link').hide();
     }
-  } 
+  }
 
-  console.log('Init Done');
+  //Logout Button
+  $('.logout-link').on('click', function (e) {
+    if( Auth.logout() ){
+      redirectToLogin();
+    }
+  })
 
+  //Social and Anonymous Auth Scheme Login
   $('#anonymous,#facebook,#twitter,#google,#github').on('click', function(e) {
     login($(this).attr('id'))
       .then(redirectToHome)
   })
 
+  //Register for Email Auth Scheme
   $('#register').on('click', function(e) {
     e.preventDefault();
     $('#email, #password').val('')
@@ -54,6 +85,7 @@ $(document).ready(function () {
       .then(redirectToHome)
   })
 
+  //Email Auth Scheme Login
   $('#login').on('click', function(e) {
     e.preventDefault();
     var data = {email: $('#email').val(), password: $('#password').val()}
