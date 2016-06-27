@@ -18,7 +18,9 @@ module.exports = {
       })
     return this;
   }, 
-
+  checkLoggedInUser(){
+    return this.auth.currentUser
+  },
   register(data){
     this.auth
       .createUserWithEmailAndPassword(data.email, data.password)
@@ -67,16 +69,23 @@ module.exports = {
         break;
       }
     }
-    request
-      .then(this.resultHandler)
-      .catch(this.errorHandler);
+    if( request !== null ){
+      return request
+        .then(this.resultHandler)
+        .catch(this.errorHandler);
+    } else {
+      console.log('No Method Found');
+      return null;
+    }
   },
 
   resultHandler: function (user) {
     console.log(user)
+    return user;
   },
 
   errorHandler: function (err) {
-    console.log(error);
+    console.log(err);
+    return false;
   }
 }
