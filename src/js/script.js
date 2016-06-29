@@ -40,15 +40,17 @@ var currentPage = function(){
   return page == '' ? 'index' : page;
 }
 
-$(document).ready(function () {
-  //Initialize the Firebase App
-  Auth.init();
-
+//Function to ensure the redirects on user auth state
+var authStateRouter = function(){
+  console.log('Auth Router')
   //Check and Set the user status
   var user = Auth.checkLoggedInUser();
+
   if( user === null ){ //User is not logged in
-    //Open the login page
-    redirectToLogin(user)
+    if( currentPage() !== 'login' ){//IF user is not on login page
+      //Open the login page
+      redirectToLogin(user)
+    }
   } else { //User is logged in
     //Check if page is login page
     if( currentPage() === 'login' ){//User is on login page
@@ -60,6 +62,11 @@ $(document).ready(function () {
       $('.login-link').hide();
     }
   }
+}
+
+$(document).ready(function () {
+  //Initialize the Firebase App
+  Auth.init(authStateRouter);
 
   //Logout Button
   $('.logout-link').on('click', function (e) {

@@ -2,7 +2,7 @@ var Firebase = require('firebase');
 
 module.exports = {
   auth: null,
-  init: function () {
+  init: function (callback) {
     var config = {
       apiKey: "",
       authDomain: "",
@@ -14,8 +14,11 @@ module.exports = {
     this.auth = Firebase.auth();
     this.auth
       .onAuthStateChanged(function(user) {
-        console.log(user)
+        if(callback){
+          callback();
+        }
       })
+
     return this;
   }, 
   checkLoggedInUser(){
