@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/time2hack/movieDB#readme",
   "dependencies": {
+    "angular": "^1.5.7",
     "bootstrap": "^3.3.6",
     "firebase": "^3.0.5",
     "jquery": "^3.0.0"
