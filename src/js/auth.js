@@ -21,14 +21,16 @@ module.exports = {
 
     return this;
   }, 
-  checkLoggedInUser(){
+  
+  checkLoggedInUser: function(){
     return this.auth.currentUser
   },
-  register(data){
-    this.auth
+
+  register: function(data){
+    return this.auth
       .createUserWithEmailAndPassword(data.email, data.password)
-      .then(resultHandler)
-      .catch(errorHandler);
+      .then(this.resultHandler)
+      .catch(this.errorHandler);
   },
 
   logout: function () {

@@ -35,7 +35,8 @@ var showError = function(errorObject){
 
 //Gets the currently open page, can evolve to a router
 var currentPage = function(){
-  var page = window.location.pathname.replace('/', '').replace('\.html', '');
+  var page = window.location.pathname.split('/')
+  page = page[page.length - 1].replace('\.html', '');
   console.log(page)
   return page == '' ? 'index' : page;
 }
@@ -84,9 +85,9 @@ $(document).ready(function () {
   //Register for Email Auth Scheme
   $('#register').on('click', function(e) {
     e.preventDefault();
-    $('#email, #password').val('')
     var data = {email: $('#email').val(), password: $('#password').val()}
     console.log(data);
+    $('#email, #password').val('')
     Auth
       .register(data)
       .then(redirectToHome)
