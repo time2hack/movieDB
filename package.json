@@ -4,7 +4,9 @@
   "description": "Firebase based app",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --content-base public/"
+    "start": "webpack-dev-server",
+    "build": "webpack --production --progress",
+    "watch": "webpack --production --progress --watch"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,7 @@
     "jquery": "^3.0.0"
   },
   "devDependencies": {
+    "html-webpack-plugin": "^2.24.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   }
