@@ -4,13 +4,13 @@ module.exports = {
   auth: null,
   init: function (callback) {
     var config = {
-      apiKey: "",
-      authDomain: "",
-      databaseURL: "",
-      storageBucket: ""
+      apiKey: "AIzaSyAj21ouYacBd2shv1X8_YYGfZkrkpXuU5I",
+      authDomain: "movie-db-1353.firebaseapp.com",
+      databaseURL: "https://movie-db-1353.firebaseio.com",
+      storageBucket: "movie-db-1353.appspot.com"
     };
     Firebase.initializeApp(config);
-    
+
     this.auth = Firebase.auth();
     this.auth
       .onAuthStateChanged(function(user) {
@@ -20,8 +20,8 @@ module.exports = {
       })
 
     return this;
-  }, 
-  
+  },
+
   checkLoggedInUser: function(){
     return this.auth.currentUser
   },

@@ -9,6 +9,7 @@ var config = {
     filename: 'app.bundle.js'
   },
   devServer: {
+    port: 3333,
     contentBase: path.join(__dirname, 'public'),
     colors: true,
     historyApiFallback: true,
